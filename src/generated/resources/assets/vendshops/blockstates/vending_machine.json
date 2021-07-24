@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "vendshops:block/vending_machine"
+    }
+  }
+}

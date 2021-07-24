@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "iii",
+    "rgr",
+    "ipi"
+  ],
+  "key": {
+    "i": {
+      "item": "minecraft:iron_block"
+    },
+    "g": {
+      "item": "minecraft:glass_pane"
+    },
+    "p": {
+      "item": "minecraft:piston"
+    },
+    "r": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "result": {
+    "item": "vendshops:vending_machine"
+  }
+}

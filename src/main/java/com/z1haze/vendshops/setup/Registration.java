@@ -19,5 +19,6 @@ public class Registration {
         ITEMS.register(bus);
 
         ModBlocks.register();
+        ModItems.register();
     }
 }

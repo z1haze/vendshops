@@ -1,5 +1,6 @@
 package com.z1haze.vendshops.setup;
 
+import com.z1haze.vendshops.block.vendingmachine.VendingMachineBlock;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -12,9 +13,13 @@ import net.minecraftforge.fml.RegistryObject;
 import java.util.function.Supplier;
 
 public class ModBlocks {
-    public static final RegistryObject<Block> VENDING_MACHINE = register("vending_machine", () ->
-            new Block(AbstractBlock.Properties
+
+    public static final RegistryObject<VendingMachineBlock> VENDING_MACHINE = registerNoItem("vending_machine", () ->
+            new VendingMachineBlock(AbstractBlock.Properties
                     .of(Material.METAL)
+                    .noOcclusion()
+                    .isRedstoneConductor(VendingMachineBlock::isNormalCube)
+                    .lightLevel(VendingMachineBlock::lightValue)
                     .strength(3, 10)
                     .sound(SoundType.METAL)));
 

@@ -15,10 +15,12 @@ public class VendShops {
         Registration.register();
 
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setupClient);
+
         MinecraftForge.EVENT_BUS.register(this);
     }
 
     private void setupClient(final FMLClientSetupEvent event) {
-        ModBlocks.setRenderLayer();;
+        ModBlocks.setRenderLayer();
+        ;
     }
 }

@@ -54,8 +54,8 @@ public class VendingMachineBlock extends RotateContainerBase {
 
     @SuppressWarnings("deprecation")
     @Override
-    public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult rayTraceResult) {
-        if (!world.isClientSide) {
+    public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult rayTraceResult) {
+        if (world.isClientSide) {
             return ActionResultType.SUCCESS;
         }
 
@@ -66,7 +66,7 @@ public class VendingMachineBlock extends RotateContainerBase {
         TileEntity te = world.getBlockEntity(pos);
 
         if (te instanceof VendingMachineTileEntity) {
-            ((VendingMachineTileEntity) te).openGui(player);
+            ((VendingMachineTileEntity) te).openGui(playerEntity);
         }
 
         return ActionResultType.CONSUME;

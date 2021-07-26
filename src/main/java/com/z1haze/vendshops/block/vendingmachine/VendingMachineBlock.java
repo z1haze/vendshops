@@ -12,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
@@ -57,6 +58,8 @@ public class VendingMachineBlock extends RotateContainerBase {
             return ActionResultType.SUCCESS;
         }
 
+        interactWith(world, pos, player);
+
         return ActionResultType.CONSUME;
     }
 
@@ -93,4 +96,17 @@ public class VendingMachineBlock extends RotateContainerBase {
     public BlockRenderType getRenderShape(BlockState state) {
         return BlockRenderType.MODEL;
     }
+
+    @Override
+    public boolean hasTileEntity(BlockState state) {
+        return true;
+    }
+
+    @Nullable
+    @Override
+    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
+        return new VendingMachineTileEntity();
+    }
+
+    private void interactWith(World world, BlockPos pos, PlayerEntity player) {}
 }

@@ -9,6 +9,7 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 
 import java.util.function.Supplier;
@@ -22,6 +23,7 @@ public class ModBlocks {
                     .isRedstoneConductor(VendingMachineBlock::isNormalCube)
                     .lightLevel(VendingMachineBlock::lightValue)
                     .strength(3, 10)
+                    .harvestTool(ToolType.PICKAXE)
                     .sound(SoundType.METAL)));
 
     private static <T extends Block> RegistryObject<T> registerNoItem(String name, Supplier<T> block) {

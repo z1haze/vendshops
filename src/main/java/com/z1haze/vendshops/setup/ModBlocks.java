@@ -5,9 +5,13 @@ import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.RegistryObject;
 
 import java.util.function.Supplier;
@@ -32,6 +36,11 @@ public class ModBlocks {
         Registration.ITEMS.register(name, () -> new BlockItem(ret.get(), new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
         return ret;
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public static void setRenderLayer() {
+        RenderTypeLookup.setRenderLayer(VENDING_MACHINE.get(), RenderType.cutout());
     }
 
     static void register() {}

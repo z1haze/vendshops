@@ -7,6 +7,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.BooleanProperty;
@@ -54,11 +55,19 @@ public class VendingMachineBlock extends RotateContainerBase {
     @SuppressWarnings("deprecation")
     @Override
     public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult rayTraceResult) {
-        if (world.isClientSide) {
+        if (!world.isClientSide) {
             return ActionResultType.SUCCESS;
         }
 
-        interactWith(world, pos, player);
+        if (!state.getValue(BOTTOM)) {
+            pos = pos.below();
+        }
+
+        TileEntity te = world.getBlockEntity(pos);
+
+        if (te instanceof VendingMachineTileEntity) {
+            ((VendingMachineTileEntity) te).openGui(player);
+        }
 
         return ActionResultType.CONSUME;
     }
@@ -67,7 +76,9 @@ public class VendingMachineBlock extends RotateContainerBase {
     @Override
     public void onRemove(BlockState state, World world, BlockPos pos, BlockState newState, boolean isMoving) {
         if (!state.is(newState.getBlock())) {
-            BlockPos pos2 = state.getValue(BOTTOM) ? pos.above() : pos.below();
+            BlockPos pos2 = state.getValue(BOTTOM)
+                    ? pos.above()
+                    : pos.below();
 
             if (world.getBlockState(pos2).getBlock() == this) {
                 world.setBlock(pos2, Blocks.AIR.defaultBlockState(), 3);
@@ -107,6 +118,4 @@ public class VendingMachineBlock extends RotateContainerBase {
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
         return new VendingMachineTileEntity();
     }
-
-    private void interactWith(World world, BlockPos pos, PlayerEntity player) {}
 }

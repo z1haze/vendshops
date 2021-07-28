@@ -7,7 +7,7 @@ import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 
-public class RotateContainerBase extends Block {
+public abstract class RotateContainerBase extends Block {
 
     public static final DirectionProperty HORIZONTAL_FACING = BlockStateProperties.HORIZONTAL_FACING;
 

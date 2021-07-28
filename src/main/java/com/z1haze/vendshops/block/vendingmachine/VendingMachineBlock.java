@@ -7,7 +7,8 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.BooleanProperty;
@@ -85,6 +86,13 @@ public class VendingMachineBlock extends RotateContainerBase {
             }
 
             world.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
+
+            TileEntity tileEntity = world.getBlockEntity(pos);
+
+            if (tileEntity instanceof IInventory) {
+                InventoryHelper.dropContents(world, pos, (IInventory) tileEntity);
+                world.updateNeighbourForOutputSignal(pos, this);
+            }
         }
 
         super.onRemove(state, world, pos, newState, isMoving);

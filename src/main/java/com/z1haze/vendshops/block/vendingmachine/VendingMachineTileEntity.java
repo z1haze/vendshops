@@ -39,12 +39,6 @@ public class VendingMachineTileEntity extends TileEntity implements IMerchant {
 
     @Override
     public MerchantOffers getOffers() {
-//        offers = new MerchantOffers();
-//
-//        MerchantOffer offer = new MerchantOffer(new ItemStack(Items.APPLE, 1), new ItemStack(Items.GOLD_BLOCK, 2), 3, 0, 0);
-//
-//        offers.add(offer);
-
         return offers;
     }
 

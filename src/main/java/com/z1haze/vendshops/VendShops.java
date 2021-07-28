@@ -21,6 +21,5 @@ public class VendShops {
 
     private void setupClient(final FMLClientSetupEvent event) {
         ModBlocks.setRenderLayer();
-        ;
     }
 }

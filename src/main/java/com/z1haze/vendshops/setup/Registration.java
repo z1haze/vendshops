@@ -2,6 +2,7 @@ package com.z1haze.vendshops.setup;
 
 import com.z1haze.vendshops.VendShops;
 import net.minecraft.block.Block;
+import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -11,6 +12,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class Registration {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, VendShops.MOD_ID);
+    public static final DeferredRegister<ContainerType<?>> CONTAINERS = DeferredRegister.create(ForgeRegistries.CONTAINERS, VendShops.MOD_ID);
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, VendShops.MOD_ID);
     public static final DeferredRegister<TileEntityType<?>> TILE_ENTITIES = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, VendShops.MOD_ID);
 
@@ -18,10 +20,12 @@ public class Registration {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
         BLOCKS.register(bus);
+        CONTAINERS.register(bus);
         ITEMS.register(bus);
         TILE_ENTITIES.register(bus);
 
         ModBlocks.register();
+        ModContainerTypes.register();
         ModItems.register();
         ModTileEntityTypes.register();
     }
